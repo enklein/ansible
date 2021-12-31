@@ -1,22 +1,25 @@
-- name: Install zsh
+- name: Install ZSH
   apt: name=zsh
-  tags:
-    - zsh
-- name: Change shell
-  shell: chsh -s `which zsh`
-  tags:
-  - zsh
-- name: Install ohmyzsh
-  shell: url -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-  tags:
-  - zsh
-- name: Install the zsh plugin for autocompletion
+  tags: &tags_for_zsh_tasks [ 'install', 'productivity', 'dotfiles', 'zsh' ]
+    
+- name: Change shell to zsh
+  shell: chsh -s $(which zsh)
+  tags: *tags_for_zsh_tasks
+
+- name: Check that the somefile.conf exists
+  stat:
+    path: /home/theprimeagen/.oh-my-zsh
+  register: oh_my_stats
+  tags: *tags_for_zsh_tasks
+
+- name: Oh-My-Zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
+  tags: *tags_for_zsh_tasks
+  when: oh_my_stats.stat.exists == False
+  become_user: theprimeagen
+
+- name: Install zsh-autosuggestions
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
-    dest: '~/.oh-my-zsh/plugins/zsh-autosuggestions'
-  tags:
-  - zsh
-- name: Update our zshrc
-  shell: sed -i 's/(git/(git zsh-autosuggestions' ~/.zshrc))
-  tags:
-  - zsh
+    dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
+  tags: *tags_for_zsh_tasks

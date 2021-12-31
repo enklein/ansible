@@ -1,14 +1,24 @@
-hosts: localhost
-become: true
-pre_tasks:
-- name: Update cache
-  apt:
-    update_cache: true
-vars:
-  source_key: "./.ssh/id_rsa"
-  dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
-tasks:
-- include init-tasks/ssh.yml
-- include init-tasks/zsh.yml
-- include init-tasks/node.yml
-- include init-tasks/dotfiles.yml
+- hosts: localhost
+  vars:
+    source_key: "./.ssh/id_rsa"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+  pre_tasks:
+  - name: Update Apt
+    become: true
+    apt:
+      force_apt_get: true
+      update_cache: true
+      state: present
+    tags:
+      - install
+      - core
+  tasks:
+    - include: tasks/ssh.yml
+    - include: tasks/core-setup.yml
+    - include: tasks/node-setup.yml
+    - include: tasks/npm-packages.yml
+    - include: tasks/zsh-setup.yml
+    - include: tasks/slack-setup.yml
+    - include: tasks/nvim-setup.yml
+    - include: tasks/dotfiles.yml
+    - include: tasks/productivity-tools.yml
