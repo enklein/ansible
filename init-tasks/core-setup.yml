@@ -24,15 +24,6 @@
     - install
     - core
 
-- name: Install Clang
-  become: true
-  apt:
-    name: ["clang", "clang-11", "clang-12", "clangd", "clangd-10", "clangd-11", "clangd-12"]
-  tags:
-    - install
-    - neovim
-    - core
-
 - name: dconf i3
   shell: dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"
   tags:

@@ -13,12 +13,11 @@
       - install
       - core
   tasks:
-    - include: tasks/ssh.yml
-    - include: tasks/core-setup.yml
-    - include: tasks/node-setup.yml
-    - include: tasks/npm-packages.yml
-    - include: tasks/zsh-setup.yml
-    - include: tasks/slack-setup.yml
-    - include: tasks/nvim-setup.yml
-    - include: tasks/dotfiles.yml
-    - include: tasks/productivity-tools.yml
+    # - include_tasks: init-tasks/ssh.yml
+    - include_tasks: init-tasks/core-setup.yml
+    - include_tasks: init-tasks/node-setup.yml
+    - include_tasks: init-tasks/npm-packages.yml
+    - include_tasks: init-tasks/zsh-setup.yml
+    - include_tasks: init-tasks/nvim-setup.yml
+    - include_tasks: init-tasks/dotfiles.yml
+    - include_tasks: init-tasks/productivity-tools.yml
