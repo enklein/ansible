@@ -12,7 +12,8 @@ chsh /bin/bash
 sudo apt purge zsh
 
 # Undo Slack
-sudo apt purge slack-desktop
+# sudo apt purge slack-desktop
 
 # Undo Core Install
-sudo apt purge curl htop stow tmux buildessential wireshark golang fzf lsof kdenlive i3 gimp ccache ninja-build yarn python3-pip xclip slack dconf-editor nvidia-settings pavucontrol clangd screenkey lua tldr
+sudo apt purge curl htop stow buildessential wireshark fzf lsof kdenlive i3 yarn python3-pip xclip slack dconf-editor nvidia-settings pavucontrol screenkey lua tldr kitty
+# sudo apt purge curl htop stow tmux buildessential wireshark golang fzf lsof kdenlive i3 gimp ccache ninja-build yarn python3-pip xclip slack dconf-editor nvidia-settings pavucontrol clangd screenkey lua tldr kitty

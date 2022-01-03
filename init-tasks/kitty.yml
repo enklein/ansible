@@ -1,0 +1,10 @@
+- name: Install Kitty
+  become: true
+  apt:
+    name: ["kitty"]
+  tags:
+    - install
+    - kitty
+- name: Set Kitty as Default
+  become: true
+  shell: update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/kitty 50
