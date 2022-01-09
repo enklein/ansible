@@ -22,3 +22,5 @@
     - include_tasks: init-tasks/nvim-setup.yml
     - include_tasks: init-tasks/dotfiles.yml
     - include_tasks: init-tasks/productivity-tools.yml
+    - include_tasks: init-tasks/figma.yml
+    # - include_tasks: init-tasks/work.yml

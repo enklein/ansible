@@ -11,7 +11,7 @@
 - name: Install packages
   become: true
   apt:
-    name: [ "fzf", "xclip", "screenkey", "tldr", "ripgrep", "shutter" ]
+    name: [ "fzf", "xclip", "screenkey", "tldr", "ripgrep", "rofi" "shutter" ]
     # name: [ "tmux", "fzf", "gimp", "xclip", "screenkey", "tldr", "ripgrep", "shutter" ]
   tags:
     - install

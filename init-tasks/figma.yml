@@ -1,0 +1,15 @@
+- name: Install Figma for Linux
+  become: true
+  community.general.snap:
+    name: figma-linux
+  tags:
+    - install
+    - figma
+- name: Install Font-Helper
+  become: true
+  shell: curl -L https://raw.githubusercontent.com/Figma-Linux/figma-linux-font-helper/master/res/install.sh | bash
+  tags:
+    - install
+    - figma
+
+# Get fonts from private repo, need to fix ssh first
